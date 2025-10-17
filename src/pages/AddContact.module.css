@@ -1,0 +1,18 @@
+.conainer{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    width: 600px;
+    height: 90%;
+    background-color: #060606;
+    border-radius: 30px;
+}

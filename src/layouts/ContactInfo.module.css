@@ -1,0 +1,90 @@
+.container{
+    width: 30%;
+    border: #515151 solid 1px;
+    background-color: #141414;
+    height: calc(100vh - 125px);
+    margin-top: 15px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    position: relative;
+}
+.profileBox{
+    width: 100%;
+    height: 200px;
+    background-color: #242424;
+    padding: 10px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.profileInfo{
+    display: flex;
+    align-items: center;
+}
+.gender{
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+}
+.name p:last-child{
+    font-size: 10px;
+    color: #ffffff9d;
+}
+.edit{
+    width: 90%;
+    height: 50px;
+    background-color: #0066ff;
+    color: #fff;
+    border-radius: 20px;
+    margin: 0 auto;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+.info{
+    width: 100%;
+    height: 50px;
+    background-color: #242424;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: #fff;
+    padding: 0 10px;
+    border-radius: 15px;
+}
+.delete{
+    position: absolute;
+    bottom: 25px;
+    width: 90%;
+    height: 50px;
+    background-color: #FF3C3C;
+    color: #fff;
+    border-radius: 20px;
+    margin: 0 auto;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+.noselected{
+    width: 30%;
+    border: #515151 solid 1px;
+    background-color: #141414;
+    height: calc(100vh - 125px);
+    margin-top: 15px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    position: relative;
+    color: #fff;
+}

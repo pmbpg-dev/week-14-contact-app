@@ -1,0 +1,72 @@
+.container{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #8c8c8c;
+    padding-bottom: 10px;
+}
+.container input{
+    width: 75%;
+    height: 100%;
+    background: none;
+    border: 1px solid #8c8c8c;
+    border-radius: 50px;
+    color: #fff;
+    padding: 0 15px;
+}
+.container select{
+    width: 20%;
+    height: 100%;
+    background: none;
+    border: 1px solid #8c8c8c;
+    border-radius: 50px;
+    color: #fff;
+    padding: 13px;
+}
+select,
+::picker(select) {
+  appearance: base-select;
+}
+select::picker-icon {
+  color: #999999;
+  transition: 0.4s rotate;
+}
+select:open::picker-icon {
+  rotate: 180deg;
+}
+::picker(select) {
+  border: none;
+}
+option {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+    color: #fff;
+  border: 1px solid #8c8c8c;
+  background: #141414;
+  padding: 10px;
+  transition: 0.4s;
+}
+option:first-of-type {
+  border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+  border-radius: 0 0 8px 8px;
+}
+
+::picker(select) {
+  border-radius: 8px;
+}
+
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+
+
+option:hover,
+option:focus {
+  background: #0066ff;
+}
