@@ -1,0 +1,34 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #1bb659;
+    border: 2px solid #fff;
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%);
+    animation: show 6s forwards;
+
+}
+.container p{
+    color: #fff;
+    font-weight: 600;
+}
+@keyframes show {
+    0%{
+        top: -60px;
+    }
+    20%{
+        top: 30px;
+    }
+    70%{
+        top: 30px;
+    }
+    100%{
+        top: -60px;
+    }
+}

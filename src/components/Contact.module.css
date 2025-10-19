@@ -27,3 +27,7 @@ p{
     background-color: #0066ff;
     cursor: pointer;
 }
+.checked{
+    width: 20px;
+    margin: 0 15px 0 5px;
+}

@@ -3,25 +3,22 @@ import ContactInfo from "./layouts/ContactInfo";
 import ContactList from "./layouts/ContactList";
 import Header from "./layouts/Header";
 import SideBar from "./layouts/SideBar";
-import { useState } from "react";
-import AddContact from "./pages/AddContact";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [showForm, setShowForm] = useState(false);
+  // 🗃️====================states================
+  const [selectedContacts, setIsSelectedContacts] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
-  const [filter, setFilter] = useState("all");
   const [selectedContact, setSelectedContact] = useState([]);
-  const [contacts, setContacts] = useState([
-    {
-      id: 1,
-      name: "ali",
-      email: "aliahmadi@gmail.com",
-      phone: "09195559978",
-      job: "programmer",
-      gender: "male",
-    },
-  ]);
-
+  const [contacts, setContacts] = useState(() => {
+    const saved = localStorage.getItem("contacts");
+    return saved ? JSON.parse(saved) : [];
+  });
+  // ⬆️==================set data to localStorage================
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
+  //==================jsx==========================
   return (
     <>
       <Header />
@@ -29,15 +26,24 @@ function App() {
         <SideBar
           isSelected={isSelected}
           setIsSelected={setIsSelected}
-          setShowForm={setShowForm}
+          selectedContacts={selectedContacts}
+          contacts={contacts}
+          setContacts={setContacts}
         />
         <ContactList
           contacts={contacts}
           setSelectedContact={setSelectedContact}
+          isSelected={isSelected}
+          setIsSelectedContacts={setIsSelectedContacts}
+          selectedContacts={selectedContacts}
         />
-        <ContactInfo selectedContact={selectedContact} />
+        <ContactInfo
+          setSelectedContact={setSelectedContact}
+          selectedContact={selectedContact}
+          contacts={contacts}
+          setContacts={setContacts}
+        />
       </div>
-      {showForm && <AddContact />}
     </>
   );
 }

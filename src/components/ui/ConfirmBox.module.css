@@ -1,4 +1,4 @@
-.conainer{
+.container{
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -9,34 +9,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    z-index: 1000;
+    opacity: 1;
     animation: show 0.5s forwards;
+    z-index: 1000;
 }
-.form{
+.box{
     width: 600px;
-    height: 90%;
+    height: 30%;
     background-color: #060606;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 20px;
     color: #fff;
+}
+.box p{
+    font-size: 20px;
+    margin-top: 45px;
 }
 .btns{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0 25px;
 }
 .btns button{
     width: 100px;
     height: 40px;
-    font-weight: 600;
-    color: #fff;
-    border-radius: 10px;
+    border-radius: 15px;
     border: none;
+    color: #fff;
     cursor: pointer;
 }
 .btns button:first-child{
@@ -44,25 +48,6 @@
 }
 .btns button:last-child{
     background-color: #0066ff;
-}
-input{
-    width: 75%;
-    height: 40px;
-    background: none;
-    border: 1px solid #8c8c8c;
-    border-radius: 50px;
-    color: #fff;
-    padding: 0 15px;
-}
-.gender{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.gender input{
-    width: 15px;
-    margin-right: 15px;
 }
 
 @keyframes show{
@@ -72,10 +57,4 @@ input{
     100%{
         opacity: 1;
     }
-}
-small{
-    color: #FF3C3C;
-    width: 70%;
-    position: relative;
-    bottom: 15px;
 }
