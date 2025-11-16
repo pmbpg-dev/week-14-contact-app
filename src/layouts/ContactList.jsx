@@ -1,36 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Contact from "../components/Contact";
 import SearchFilter from "../components/SearchFilter";
 import styles from "./ContactList.module.css";
+import { UserContext } from "../components/context/ContactProvider";
+import { UiContext } from "../components/context/UiProvider";
 
-function ContactList({
-  contacts,
-  setSelectedContact,
-  isSelected,
-  setIsSelectedContacts,
-  selectedContacts,
-}) {
+function ContactList() {
   // ==============state================
-  const [showContacts, setShowContacts] = useState([]);
+  const { contacts, setContacts } = useContext(UiContext);
+  const { store } = useContext(UserContext);
   // ================set contacts to show list============
   useEffect(() => {
-    setShowContacts(contacts);
-  }, [contacts]);
+    setContacts(store.contacts);
+  }, [store]);
   // ===================jsx=============
   return (
     <div className={styles.container}>
-      <SearchFilter contacts={contacts} setShowContacts={setShowContacts} />
+      <SearchFilter />
       <div className={styles.contacts}>
-        {showContacts.map((contact) => (
-          <Contact
-            key={contact.id}
-            contact={contact}
-            setSelectedContact={setSelectedContact}
-            isSelected={isSelected}
-            setIsSelectedContacts={setIsSelectedContacts}
-            selectedContacts={selectedContacts}
-          />
-        ))}
+        {contacts.length === 0 ? (
+          <p className={styles.empty}>No Contacts</p>
+        ) : (
+          contacts.map((contact) => (
+            <Contact key={contact.id} contact={contact} />
+          ))
+        )}
       </div>
     </div>
   );

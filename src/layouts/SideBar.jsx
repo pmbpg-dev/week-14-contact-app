@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./SideBar.module.css";
 import { AiOutlineUsergroupDelete } from "react-icons/ai";
 import { RiUserAddLine } from "react-icons/ri";
 import ConfirmBox from "../components/ui/ConfirmBox";
 import AlertBox from "../components/ui/AlertBox";
 import AddContact from "../pages/AddContact";
+import { UiContext } from "../components/context/UiProvider";
+import api from "../api/config";
+import { UserContext } from "../components/context/ContactProvider";
 
-function SideBar({
-  isSelected,
-  setIsSelected,
-  selectedContacts,
-  contacts,
-  setContacts,
-}) {
+function SideBar() {
   // ==============states==================
+  const { isSelected, setIsSelected, selectedId, setSelectedId } =
+    useContext(UiContext);
+  const { dispatch } = useContext(UserContext);
   const [confirm, setConfirm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -27,18 +27,25 @@ function SideBar({
       }, 6000);
       return () => clearTimeout(timer);
     }
-  }, [showAlert]);
+  }, [showAlert, selectedId]);
 
   // 🗑️====================delete selected contacts================
   const confirmDeleteHandler = () => {
-    const newContact = contacts.filter(
-      (contact) => !selectedContacts.some((c) => c.id === contact.id)
-    );
-    setContacts(newContact);
+    selectedId.map((id) => {
+      api.delete(`/contacts/${id}`);
+    });
+    dispatch({ type: "BULK_DELETE_CONTACTS", payload: selectedId });
     setConfirm(false);
     setMessage("delete contacts successfully!");
     setShowAlert(true);
     setIsSelected(false);
+  };
+  const showDeleteHandler = () => {
+    setIsSelected((prev) => {
+      const newState = !prev;
+      if (newState) setSelectedId([]);
+      return newState;
+    });
   };
   //==================jsx===================================
   return (
@@ -46,16 +53,13 @@ function SideBar({
       <button className={styles.btns} onClick={() => setShowForm(true)}>
         <RiUserAddLine size={25} />
       </button>
-      <button
-        className={styles.btns}
-        onClick={() => setIsSelected(!isSelected)}
-      >
+      <button className={styles.btns} onClick={showDeleteHandler}>
         {isSelected ? "Cancel" : "Select"}
       </button>
       {isSelected && (
         <button
           className={styles.delete}
-          onClick={() => selectedContacts.length && setConfirm(true)}
+          onClick={() => (selectedId.length ? setConfirm(true) : null)}
         >
           <AiOutlineUsergroupDelete size={25} />
         </button>
@@ -71,8 +75,6 @@ function SideBar({
       {showForm && (
         <AddContact
           setShowForm={setShowForm}
-          contacts={contacts}
-          setContacts={setContacts}
           setShowAlert={setShowAlert}
           setMessage={setMessage}
           mode="Add"

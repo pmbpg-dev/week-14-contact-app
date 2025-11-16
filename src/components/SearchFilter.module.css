@@ -1,29 +1,35 @@
-.container{
-    width: 100%;
-    height: 55px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #8c8c8c;
-    padding-bottom: 10px;
+.container {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #8c8c8c;
+  padding-bottom: 10px;
 }
-.container input{
-    width: 75%;
-    height: 100%;
-    background: none;
-    border: 1px solid #8c8c8c;
-    border-radius: 50px;
-    color: #fff;
-    padding: 0 15px;
+.container input {
+  width: 60%;
+  height: 100%;
+  background: none;
+  border: 1px solid transparent;
+  background-color: #090f14;
+  box-shadow: inset 5px 5px 15px #00000094;
+  border-radius: 15px;
+  color: #fff;
+  padding: 0 15px;
+  outline: none;
 }
-.container select{
-    width: 20%;
-    height: 100%;
-    background: none;
-    border: 1px solid #8c8c8c;
-    border-radius: 50px;
-    color: #fff;
-    padding: 13px;
+.container input:focus {
+  border: #00a8d2 1px solid;
+}
+.container select {
+  width: 25%;
+  height: 100%;
+  background: none;
+  border: 1px solid #8c8c8c;
+  border-radius: 15px;
+  color: #fff;
+  padding: 13px;
 }
 select,
 ::picker(select) {
@@ -43,30 +49,41 @@ option {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-    color: #fff;
+  color: #fff;
   border: 1px solid #8c8c8c;
-  background: #141414;
+  background: #090f14;
   padding: 10px;
   transition: 0.4s;
 }
 option:first-of-type {
-  border-radius: 8px 8px 0 0;
+  border-radius: 15px 15px 0 0;
 }
 
 option:last-of-type {
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 15px 15px;
 }
 
 ::picker(select) {
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 option:not(option:last-of-type) {
   border-bottom: none;
 }
 
-
 option:hover,
 option:focus {
-  background: #0066ff;
+  background: #00a8d2;
+}
+
+.favorite {
+  width: 60px;
+  height: 100%;
+  border: 1px solid #959595;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
 }

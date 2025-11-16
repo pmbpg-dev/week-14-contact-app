@@ -1,81 +1,114 @@
-.conainer{
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    z-index: 1000;
-    animation: show 0.5s forwards;
+.conainer {
+  background-color: #ffffff06;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 1000;
+  animation: show 0.5s forwards;
 }
-.form{
-    width: 600px;
-    height: 90%;
-    background-color: #060606;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 20px;
-    color: #fff;
+.form {
+  width: 600px;
+  height: 90%;
+  border: #ffffff17 solid 1px;
+  border-bottom: #000 solid 1px;
+  border-right: #000 solid 1px;
+  box-shadow: 5px 5px 15px #00000070;
+  background: linear-gradient(315deg, #050a0d, #090f14);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  color: #fff;
 }
-.btns{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 25px;
 }
-.btns button{
-    width: 100px;
-    height: 40px;
-    font-weight: 600;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
+.btns button {
+  width: 100px;
+  height: 40px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }
-.btns button:first-child{
-    background-color: #FF3C3C;
+.btns button:first-child {
+  background: linear-gradient(180deg, #e31313, #b30d0d);
+  box-shadow: 0 0 15px #000;
 }
-.btns button:last-child{
-    background-color: #0066ff;
-}
-input{
-    width: 75%;
-    height: 40px;
-    background: none;
-    border: 1px solid #8c8c8c;
-    border-radius: 50px;
-    color: #fff;
-    padding: 0 15px;
-}
-.gender{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.gender input{
-    width: 15px;
-    margin-right: 15px;
+.btns button:last-child {
+  background: linear-gradient(180deg, #00a8d2, #00718e);
+  box-shadow: 0 0 15px #000;
 }
 
-@keyframes show{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+.form input:not([type="radio"]) {
+  width: 75%;
+  height: 50px;
+  background: none;
+  border: 1px solid transparent;
+  background: #0f171d;
+  box-shadow: inset 5px 5px 15px #00000094;
+  border-radius: 15px;
+  color: #fff;
+  padding: 0 15px;
+  font-weight: 600;
 }
-small{
-    color: #FF3C3C;
-    width: 70%;
-    position: relative;
-    bottom: 15px;
+.form input[type="radio"] {
+  appearance: none;
+  transform: scale(1.5);
+  height: 16px;
+  border: 2px solid #555;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.form input[type="radio"]:checked {
+  border-color: #3498db;
+  background-color: #00718e;
+}
+
+.gender {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 85px;
+}
+.gender input {
+  width: 15px;
+  margin-right: 15px;
+}
+.header {
+  font-size: 1.5rem;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+small {
+  color: #ff3c3c;
+  width: 70%;
+  position: relative;
+  bottom: 10px;
 }

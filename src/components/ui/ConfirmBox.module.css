@@ -1,60 +1,69 @@
-.container{
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    animation: show 0.5s forwards;
-    z-index: 1000;
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff06;
+
+  position: fixed;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  animation: show 0.5s forwards;
+  z-index: 1000;
 }
-.box{
-    width: 600px;
-    height: 30%;
-    background-color: #060606;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    color: #fff;
+.box {
+  width: 600px;
+  height: 30%;
+  border: #ffffff17 solid 1px;
+  border-bottom: #000 solid 1px;
+  border-right: #000 solid 1px;
+  box-shadow: 5px 5px 15px #00000070;
+  background: linear-gradient(315deg, #090f14, #0f171d);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  color: #fff;
 }
-.box p{
-    font-size: 20px;
-    margin-top: 45px;
+.box p {
+  font-size: 20px;
+  margin-top: 45px;
 }
-.btns{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 25px;
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.btns button{
-    width: 100px;
-    height: 40px;
-    border-radius: 15px;
-    border: none;
-    color: #fff;
-    cursor: pointer;
+.btns button {
+  width: 100px;
+  height: 40px;
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
 }
-.btns button:first-child{
-    background-color: #FF3C3C;
+.btns button:first-child {
+  background: linear-gradient(180deg, #e31313, #b30d0d);
+  box-shadow: 0 0 15px #000;
 }
-.btns button:last-child{
-    background-color: #0066ff;
+.btns button:last-child {
+  background: linear-gradient(180deg, #00a8d2, #00718e);
+  box-shadow: 0 0 15px #000;
 }
 
-@keyframes show{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

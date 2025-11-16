@@ -1,22 +1,18 @@
-import styles from "./AddContact.module.css";
-import { useEffect, useState } from "react";
+import { UserContext } from "../components/context/ContactProvider";
+import { UiContext } from "../components/context/UiProvider";
+import { useContext, useEffect, useState } from "react";
 import validateForm from "../helpers/validateForm";
+import api from "../api/config";
+import styles from "./AddContact.module.css";
 
-function AddContact({
-  setShowForm,
-  setContacts,
-  contacts,
-  setShowAlert,
-  setMessage,
-  mode,
-  editingContact,
-  setSelectedContact,
-}) {
+function AddContact({ setShowForm, setShowAlert, setMessage, mode }) {
   // 🗃️====================states================
+  const { selectedContact } = useContext(UiContext);
+  const { dispatch } = useContext(UserContext);
   const [form, setForm] = useState(
     mode === "Edit"
-      ? editingContact
-      : { id: 0, name: "", email: "", phone: "", job: "", gender: "male" }
+      ? selectedContact
+      : { name: "", email: "", phone: "", job: "", gender: "male", fav: false }
   );
   const [errors, setErrors] = useState({
     name: "",
@@ -26,10 +22,10 @@ function AddContact({
   });
   //=============set contact in state for edit============
   useEffect(() => {
-    if (mode === "Edit" && editingContact) {
-      setForm(editingContact);
+    if (mode === "Edit" && selectedContact) {
+      setForm(selectedContact);
     }
-  }, [editingContact, mode]);
+  }, [selectedContact, mode]);
 
   // 💠=========== form input event handle================
   const changeHandler = (e) => {
@@ -43,38 +39,47 @@ function AddContact({
   // 💾=============save contact to state==============
   const addHandler = () => {
     //------validate info before adding------------
+    const newErrors = {};
+    for (let i in form) {
+      const errMsg = validateForm(i, form[i]);
+      newErrors[i] = errMsg;
+    }
+    setErrors(newErrors);
     const hasEmpty = Object.values(form).some((value) => value === "");
     if (hasEmpty) return;
     //-----------add new contact----------------
     if (mode === "Add") {
-      const newContact = {
-        ...form,
-        id: contacts.length + 1,
+      const addContact = async () => {
+        try {
+          const create = await api.post("/contacts", form);
+          dispatch({ type: "ADD_CONTACT", payload: create });
+          setMessage("Add contact successfully!");
+        } catch (err) {
+          setMessage(err.message);
+        }
       };
-      setContacts([...contacts, newContact]);
-      setMessage("Add contact successfully!");
+      addContact();
     }
     // -------------edit selected contact----------
     else {
-      const updatedContacts = contacts.map((contact) => {
-        if (contact.id === form.id) {
-          setMessage("edit contact successfully!");
-          setSelectedContact(form);
-          return form;
-        } else {
-          return contact;
-        }
-      });
-      setContacts(updatedContacts);
+      try {
+        api.put(`/contacts/${form.id}`, form);
+        dispatch({ type: "EDIT_CONTACT", payload: form });
+        setMessage("edit contact successfully!");
+      } catch (err) {
+        setMessage(err.message);
+      }
     }
     setShowAlert(true);
     setShowForm(false);
   };
+
   //==================jsx========================
   return (
     <div className={styles.conainer}>
       <div className={styles.form}>
-        <p>{mode} Contact</p>
+        <p className={styles.header}>{mode} Contact</p>
+
         <input
           type="text"
           placeholder="Name"
