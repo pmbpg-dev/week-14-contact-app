@@ -11,8 +11,13 @@ import { UserContext } from "../components/context/ContactProvider";
 
 function SideBar() {
   // ==============states==================
-  const { isSelected, setIsSelected, selectedId, setSelectedId } =
-    useContext(UiContext);
+  const {
+    isSelected,
+    setIsSelected,
+    selectedId,
+    setSelectedId,
+    setSelectedContact,
+  } = useContext(UiContext);
   const { dispatch } = useContext(UserContext);
   const [confirm, setConfirm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -41,6 +46,7 @@ function SideBar() {
     setIsSelected(false);
   };
   const showDeleteHandler = () => {
+    setSelectedContact([]);
     setIsSelected((prev) => {
       const newState = !prev;
       if (newState) setSelectedId([]);
