@@ -1,17 +1,17 @@
 .container {
-  width: 55%;
+  width: 75%;
   border: #ffffff17 solid 1px;
   border-bottom: #000 solid 1px;
   border-right: #000 solid 1px;
   box-shadow: 5px 5px 15px #00000070;
   background: linear-gradient(315deg, #090f14, #0f171d);
-  height: calc(100vh - 125px);
+  height: calc(100vh - 105px);
   margin: 15px 15px 0 0;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
+  padding: 15px;
 }
 .contacts {
   width: 100%;

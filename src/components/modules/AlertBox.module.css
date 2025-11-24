@@ -1,8 +1,8 @@
-.container {
+.alertContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 350px;
+  /* justify-content: center; */
+  width: 400px;
   height: 50px;
   border-radius: 10px;
   border: #ffffff17 solid 1px;
@@ -17,19 +17,25 @@
   animation: show 6s forwards;
   padding: 0 8px;
 }
-.container p {
-  color: #1bb659;
+.alertContainer p {
   font-weight: 600;
+  color: #fff;
+  margin-left: 10px;
 }
-.container p span {
-  background-color: #1bb659;
+.alertContainer p span {
   width: 30px;
   height: 30px;
-  color: #fff;
   padding: 2px 5px;
   margin-right: 5px;
   border-radius: 5px;
 }
+/* .alertContainer p {
+  color: #1bb659;
+}
+.alertContainer p span {
+  background-color: #1bb659;
+} */
+
 @keyframes show {
   0% {
     top: -60px;

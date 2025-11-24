@@ -3,9 +3,9 @@ import styles from "./ContactInfo.module.css";
 import { FaMale, FaFemale } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
-import AlertBox from "../components/ui/AlertBox";
-import ConfirmBox from "../components/ui/ConfirmBox";
-import AddContact from "../pages/AddContact";
+import AlertBox from "../components/modules/AlertBox";
+import ConfirmBox from "../components/modules/ConfirmBox";
+import AddContact from "../components/modules/AddContact";
 import { UserContext } from "../components/context/ContactProvider";
 import api from "../api/config";
 import { UiContext } from "../components/context/UiProvider";
@@ -17,6 +17,7 @@ function ContactInfo() {
   const [showAlert, setShowAlert] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
   const { gender, name, email, phone, job, id, fav } = selectedContact;
   // ================clear Alert==================
   useEffect(() => {
@@ -28,10 +29,17 @@ function ContactInfo() {
     }
   }, [showAlert]);
   // 🗑️====================delete selected contact================
-  const confirmDeleteHandler = () => {
-    api.delete(`/contacts/${selectedContact.id}`);
-    dispatch({ type: "DELETE_CONTACT", payload: selectedContact.id });
-    setConfirm(false);
+  const confirmDeleteHandler = async () => {
+    try {
+      await api.delete(`/contacts/${selectedContact.id}`);
+      dispatch({ type: "DELETE_CONTACT", payload: selectedContact.id });
+      setConfirm(false);
+      setIsError(false);
+      setMessage("delete contact successfully!");
+    } catch (err) {
+      setIsError(true);
+      setMessage(err.message);
+    }
     setShowAlert(true);
     setSelectedContact({});
   };
@@ -47,7 +55,7 @@ function ContactInfo() {
     return (
       <div className={styles.noselected}>
         Not Selected
-        {showAlert && <AlertBox text="delete contact successfully!" />}
+        {showAlert && <AlertBox text={message} isError={isError} />}
       </div>
     );
   return (
@@ -96,6 +104,7 @@ function ContactInfo() {
           setShowForm={setShowForm}
           setShowAlert={setShowAlert}
           setMessage={setMessage}
+          setIsError={setIsError}
         />
       )}
     </div>

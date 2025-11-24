@@ -13,3 +13,10 @@ body {
   display: flex;
   justify-content: space-between;
 }
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 5px;
+}

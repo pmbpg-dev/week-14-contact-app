@@ -72,7 +72,25 @@
   position: absolute;
   right: 15px;
 }
-
+.groups {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  padding: 2px 0;
+  margin-left: 20px;
+}
+.groups span {
+  border: 1px solid yellow;
+  color: yellow;
+  opacity: 0.5;
+  font-size: 0.7rem;
+  padding: 1px 3px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
 @keyframes show {
   0% {
     opacity: 0;

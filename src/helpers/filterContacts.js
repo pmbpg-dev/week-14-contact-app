@@ -1,10 +1,18 @@
-function filterContacts(contacts, gender, search, favorite) {
+function filterContacts(contacts, gender, search, groupId, groups, favorite) {
   let newContacts = [];
+  // =================filter by group================
+  if (groupId !== "all") {
+    const selectedGroup = groups.find((g) => g.id === groupId);
+    const contactsGroup = contacts.filter((c) =>
+      selectedGroup.members.includes(c.id)
+    );
+    newContacts = contactsGroup;
+  } else {
+    newContacts = contacts;
+  }
   // =================filter by gender================
   if (gender !== "all") {
     newContacts = contacts.filter((contact) => contact.gender === gender);
-  } else {
-    newContacts = contacts;
   }
   //===================search contacts name=============
   if (search.trim() !== "") {

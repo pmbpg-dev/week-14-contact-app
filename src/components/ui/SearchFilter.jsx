@@ -1,17 +1,20 @@
 import { useContext, useState } from "react";
 import styles from "./SearchFilter.module.css";
-import filterContacts from "../helpers/filterContacts";
-import { UiContext } from "./context/UiProvider";
-import { UserContext } from "./context/ContactProvider";
+import filterContacts from "../../helpers/filterContacts";
+import { UiContext } from "../context/UiProvider";
+import { UserContext } from "../context/ContactProvider";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { useGroups } from "../context/GroupsProvider";
 function SearchFilter() {
   // 🗃️====================states================
   const { setContacts } = useContext(UiContext);
   const { store } = useContext(UserContext);
+  const [group] = useGroups();
   const [find, setFind] = useState({
     search: "",
     gender: "all",
+    groupId: "all",
     favorite: false,
   });
   //💠=============filter and search handler===========
@@ -23,6 +26,8 @@ function SearchFilter() {
       store.contacts,
       updatedFind.gender,
       updatedFind.search,
+      updatedFind.groupId,
+      group.groups,
       find.favorite
     );
     setContacts(newContacts);
@@ -34,6 +39,8 @@ function SearchFilter() {
       store.contacts,
       find.gender,
       find.search,
+      find.groupId,
+      group.groups,
       !find.favorite
     );
     setContacts(newContacts);
@@ -50,9 +57,17 @@ function SearchFilter() {
       />
 
       <select name="gender" value={find.gender} onChange={changeHandler}>
-        <option value="all">All</option>
+        <option value="all">Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
+      </select>
+      <select name="groupId" onChange={changeHandler}>
+        <option value="all">Groups</option>
+        {group.groups.map((group) => (
+          <option key={group.id} value={group.id}>
+            {group.name}
+          </option>
+        ))}
       </select>
       <button className={styles.favorite} onClick={favoriteHandler}>
         {find.favorite ? (

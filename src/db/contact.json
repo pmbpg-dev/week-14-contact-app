@@ -1,3 +1,12 @@
 {
-  "contacts": []
+  "contacts": [],
+  "groups": [
+    {
+      "id": "a1de",
+      "name": "gym",
+      "members": [
+        "b3eb"
+      ]
+    }
+  ]
 }

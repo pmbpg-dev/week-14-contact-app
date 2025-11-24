@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import Contact from "../components/Contact";
-import SearchFilter from "../components/SearchFilter";
+import Contact from "../components/ui/Contact";
+import SearchFilter from "../components/ui/SearchFilter";
 import styles from "./ContactList.module.css";
 import { UserContext } from "../components/context/ContactProvider";
 import { UiContext } from "../components/context/UiProvider";
