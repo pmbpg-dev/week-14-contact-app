@@ -1,0 +1,21 @@
+.radios {
+  width: 75%;
+  margin-top: 30px;
+}
+.radios label {
+  margin-left: 25px;
+}
+.radios input[type="radio"] {
+  appearance: none;
+  transform: scale(1.5);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #555;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.radios input[type="radio"]:checked {
+  border-color: #3498db;
+  background-color: #00718e;
+}

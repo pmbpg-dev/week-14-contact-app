@@ -1,90 +1,135 @@
-.container{
-    width: 30%;
-    border: #515151 solid 1px;
-    background-color: #141414;
-    height: calc(100vh - 125px);
-    margin-top: 15px;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px;
-    position: relative;
+.container {
+  width: 30%;
+  border: #ffffff17 solid 1px;
+  border-bottom: #000 solid 1px;
+  border-right: #000 solid 1px;
+  box-shadow: 5px 5px 15px #00000070;
+  background: linear-gradient(315deg, #090f14, #0f171d);
+  height: calc(100vh - 105px);
+  margin-top: 15px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  position: relative;
 }
-.profileBox{
-    width: 100%;
-    height: 200px;
-    background-color: #242424;
-    padding: 10px;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.profileBox {
+  width: 100%;
+  height: 150px;
+  background-color: #090f14;
+  box-shadow: inset 5px 5px 15px #00000094;
+  padding: 10px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: show 0.5s forwards;
 }
-.profileInfo{
-    display: flex;
-    align-items: center;
+.profileInfo {
+  display: flex;
+  align-items: center;
 }
-.gender{
-    width: 50px;
-    height: 50px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
+.gender {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin-right: 15px;
 }
-.name p:last-child{
-    font-size: 10px;
-    color: #ffffff9d;
+.name p:first-child {
+  font-size: 18px;
+  color: #fff;
 }
-.edit{
-    width: 90%;
-    height: 50px;
-    background-color: #0066ff;
-    color: #fff;
-    border-radius: 20px;
-    margin: 0 auto;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+.name p:last-child {
+  font-size: 10px;
+  color: #ffffff9d;
 }
-.info{
-    width: 100%;
-    height: 50px;
-    background-color: #242424;
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-    color: #fff;
-    padding: 0 10px;
-    border-radius: 15px;
+.buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.delete{
-    position: absolute;
-    bottom: 25px;
-    width: 90%;
-    height: 50px;
-    background-color: #FF3C3C;
-    color: #fff;
-    border-radius: 20px;
-    margin: 0 auto;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+.favorite {
+  width: 30%;
+  height: 50px;
+  border: 1px solid #959595;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: transparent;
 }
-.noselected{
-    width: 30%;
-    border: #515151 solid 1px;
-    background-color: #141414;
-    height: calc(100vh - 125px);
-    margin-top: 15px;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    position: relative;
-    color: #fff;
+.edit {
+  width: 65%;
+  height: 50px;
+  background: linear-gradient(180deg, #00a8d2, #00718e);
+  box-shadow: 0 0 15px #000;
+  color: #fff;
+  border-radius: 15px;
+  border: none;
+  font-size: 19px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.info {
+  width: 100%;
+  height: 50px;
+  background-color: #090f14;
+  box-shadow: inset 5px 5px 15px #00000094;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  color: #fff;
+  padding: 0 10px;
+  border-radius: 15px;
+  animation: show 0.5s forwards;
+}
+.delete {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(180deg, #e31313, #b30d0d);
+  box-shadow: 0 0 15px #000;
+  color: #fff;
+  border-radius: 15px;
+  margin: 0 auto;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 5px;
+  animation: show 1s forwards;
+}
+.noselected {
+  width: 30%;
+  border: #ffffff17 solid 1px;
+  border-bottom: #000 solid 1px;
+  border-right: #000 solid 1px;
+  box-shadow: 5px 5px 15px #00000070;
+  background: linear-gradient(315deg, #090f14, #0f171d);
+  height: calc(100vh - 105px);
+  margin-top: 15px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  position: relative;
+  color: #fff;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+    /* transform: scale(0); */
+  }
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
 }

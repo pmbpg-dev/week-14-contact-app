@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./SideBar.module.css";
 import { AiOutlineUsergroupDelete } from "react-icons/ai";
 import { RiUserAddLine } from "react-icons/ri";
-import ConfirmBox from "../components/ui/ConfirmBox";
-import AlertBox from "../components/ui/AlertBox";
-import AddContact from "../pages/AddContact";
+import ConfirmBox from "../components/modules/ConfirmBox";
+import AlertBox from "../components/modules/AlertBox";
+import AddContact from "../components/modules/AddContact";
+import { UiContext } from "../components/context/UiProvider";
+import api from "../api/config";
+import { UserContext } from "../components/context/ContactProvider";
+import GroupBtn from "../components/ui/GroupBtn";
 
-function SideBar({
-  isSelected,
-  setIsSelected,
-  selectedContacts,
-  contacts,
-  setContacts,
-}) {
+function SideBar() {
   // ==============states==================
+  const {
+    isSelected,
+    setIsSelected,
+    selectedId,
+    setSelectedId,
+    setSelectedContact,
+  } = useContext(UiContext);
+  const { dispatch } = useContext(UserContext);
   const [confirm, setConfirm] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   // ================clear Alert==================
   useEffect(() => {
@@ -27,18 +34,32 @@ function SideBar({
       }, 6000);
       return () => clearTimeout(timer);
     }
-  }, [showAlert]);
+  }, [showAlert, selectedId]);
 
   // 🗑️====================delete selected contacts================
   const confirmDeleteHandler = () => {
-    const newContact = contacts.filter(
-      (contact) => !selectedContacts.some((c) => c.id === contact.id)
-    );
-    setContacts(newContact);
-    setConfirm(false);
-    setMessage("delete contacts successfully!");
+    try {
+      selectedId.map(async (id) => {
+        await api.delete(`/contacts/${id}`);
+      });
+      dispatch({ type: "BULK_DELETE_CONTACTS", payload: selectedId });
+      setConfirm(false);
+      setIsError(false);
+      setMessage("delete contacts successfully!");
+    } catch (err) {
+      setIsError(true);
+      setMessage(err.message);
+    }
     setShowAlert(true);
     setIsSelected(false);
+  };
+  const showDeleteHandler = () => {
+    setSelectedContact([]);
+    setIsSelected((prev) => {
+      const newState = !prev;
+      if (newState) setSelectedId([]);
+      return newState;
+    });
   };
   //==================jsx===================================
   return (
@@ -46,16 +67,13 @@ function SideBar({
       <button className={styles.btns} onClick={() => setShowForm(true)}>
         <RiUserAddLine size={25} />
       </button>
-      <button
-        className={styles.btns}
-        onClick={() => setIsSelected(!isSelected)}
-      >
+      <button className={styles.btns} onClick={showDeleteHandler}>
         {isSelected ? "Cancel" : "Select"}
       </button>
       {isSelected && (
         <button
           className={styles.delete}
-          onClick={() => selectedContacts.length && setConfirm(true)}
+          onClick={() => (selectedId.length ? setConfirm(true) : null)}
         >
           <AiOutlineUsergroupDelete size={25} />
         </button>
@@ -67,14 +85,14 @@ function SideBar({
           onCancel={() => setConfirm(false)}
         />
       )}
-      {showAlert && <AlertBox text={message} />}
+      <GroupBtn />
+      {showAlert && <AlertBox text={message} isError={isError} />}
       {showForm && (
         <AddContact
           setShowForm={setShowForm}
-          contacts={contacts}
-          setContacts={setContacts}
           setShowAlert={setShowAlert}
           setMessage={setMessage}
+          setIsError={setIsError}
           mode="Add"
         />
       )}
