@@ -16,6 +16,7 @@ ___
 - ✅ Add and manage groups
 - ✅ Add contacts in group
 - ✅ Add favorites contacts
+- ❌ Not responsive
 
 
 ___
