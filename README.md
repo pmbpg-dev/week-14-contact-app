@@ -1,6 +1,6 @@
 # Contact App 
 
-A modern contact app web aplication, and users can,anage contacts.
+A modern contact app web aplication, and users can manage contacts.
 
 ___
 
