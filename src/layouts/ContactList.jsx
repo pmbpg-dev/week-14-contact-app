@@ -4,6 +4,8 @@ import SearchFilter from "../components/ui/SearchFilter";
 import styles from "./ContactList.module.css";
 import { UserContext } from "../components/context/ContactProvider";
 import { UiContext } from "../components/context/UiProvider";
+import { motion, stagger } from "motion/react";
+import { animate } from "motion";
 
 function ContactList() {
   // ==============state================
@@ -21,8 +23,15 @@ function ContactList() {
         {contacts.length === 0 ? (
           <p className={styles.empty}>No Contacts</p>
         ) : (
-          contacts.map((contact) => (
-            <Contact key={contact.id} contact={contact} />
+          contacts.map((contact, i) => (
+            <motion.div
+              key={contact.id}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3, delay: i * 0.05 }}
+            >
+              <Contact contact={contact} />
+            </motion.div>
           ))
         )}
       </div>

@@ -12,7 +12,13 @@ function Input({ error, touched, name, disabled }) {
           (styles.input, error && touched ? styles.inputError : "")
         }`}
       />
-      {error && touched ? <small>{error}</small> : <small></small>}
+      {error && touched ? (
+        <small>
+          {name} {error}
+        </small>
+      ) : (
+        <small></small>
+      )}
     </>
   );
 }
